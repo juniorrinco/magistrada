@@ -195,3 +195,5 @@ button{font:inherit}
 .titulo{display:flex;align-items:center;gap:16px}
 .titulo img{flex:0 0 auto}
 @media (max-width:860px){.titulo img{width:56px;height:56px}}
+.marca img{width:52px;height:52px}
+.titulo{display:block}
