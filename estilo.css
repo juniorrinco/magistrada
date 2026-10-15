@@ -189,3 +189,9 @@ button{font:inherit}
 .roadmap-img{display:block;margin:14px 0 8px;box-shadow:0 0 14px rgba(0,0,0,.6);cursor:zoom-in}
 .roadmap-img img{display:block;width:100%;height:auto}
 .lightbox.avulsa .seta{display:none}
+
+.marca{display:inline-flex;align-items:center;gap:10px}
+.marca img{display:block}
+.titulo{display:flex;align-items:center;gap:16px}
+.titulo img{flex:0 0 auto}
+@media (max-width:860px){.titulo img{width:42px;height:42px}}

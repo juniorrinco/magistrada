@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Balança da justiça">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#2a1220" stroke="#d4af6a" stroke-width="2.5"/>
+  <g fill="#d4af6a" stroke="#d4af6a" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="13" r="3" stroke="none"/>
+    <path d="M32 16V46" stroke-width="3" fill="none"/>
+    <path d="M22 49H42" stroke-width="3.5" fill="none"/>
+    <path d="M13 21H51" stroke-width="3" fill="none"/>
+    <path d="M16 21L9 37M16 21L23 37M48 21L41 37M48 21L55 37" stroke-width="1.6" fill="none"/>
+    <path d="M7 37H25Q16 48 7 37Z" stroke-width="1" />
+    <path d="M39 37H57Q48 48 39 37Z" stroke-width="1" />
+  </g>
+</svg>
