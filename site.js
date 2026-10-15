@@ -63,6 +63,7 @@ document.addEventListener("keydown", (e) => {
 
 // ---- Ampliar (foto e vídeo) ----
 function abrirLb(i) {
+  lb.classList.remove("avulsa");
   lbIdx = (i + itens.length) % itens.length;
   const it = itens[lbIdx];
   video.pause();
@@ -83,7 +84,21 @@ function abrirLb(i) {
   document.body.style.overflow = "hidden";
   $("lbFechar").focus();
 }
+// Imagem avulsa (fora da vitrine), por exemplo o roadmap: sem setas.
+function abrirAvulsa(src, leg) {
+  video.pause();
+  lbCorpo.innerHTML = "";
+  const el = document.createElement("img");
+  el.src = src; el.alt = leg;
+  lbCorpo.appendChild(el);
+  lbLeg.textContent = leg;
+  lb.classList.add("avulsa");
+  lb.hidden = false;
+  document.body.style.overflow = "hidden";
+  $("lbFechar").focus();
+}
 function fecharLb() {
+  lb.classList.remove("avulsa");
   lb.hidden = true;
   lbCorpo.innerHTML = "";
   document.body.style.overflow = "";
@@ -98,9 +113,12 @@ $("lbProx").addEventListener("click", () => abrirLb(lbIdx + 1));
 document.addEventListener("keydown", (e) => {
   if (lb.hidden) return;
   if (e.key === "Escape") fecharLb();
+  if (lb.classList.contains("avulsa")) return;
   if (e.key === "ArrowLeft") abrirLb(lbIdx - 1);
   if (e.key === "ArrowRight") abrirLb(lbIdx + 1);
 });
+const rm = document.querySelector(".roadmap-img");
+if (rm) rm.addEventListener("click", (e) => { e.preventDefault(); abrirAvulsa(rm.getAttribute("href"), "Roadmap de atualizações de MAGISTRADA"); });
 
 // ---- Comunicação com o servidor (servidor.py ou Google Apps Script) ----
 // Texto simples evita a pré-verificação CORS; o servidor lê o corpo como JSON.

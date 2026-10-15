@@ -168,3 +168,24 @@ button{font:inherit}
 .form.mini h3{font-size:19px}
 .form.mini[hidden]{display:none}
 .apoio-lista .miudo{margin:8px 0}
+
+/* ---- Roadmap ---- */
+.trilha{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.etapa,.continuo{background:rgba(0,0,0,.28);padding:14px 16px;border:1px solid #4a3440;border-top-width:3px}
+.etapa h3,.continuo h3{margin:6px 0 8px;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--claro)}
+.etapa ul,.continuo ul{margin:0;padding-left:18px}
+.etapa li,.continuo li{margin:6px 0;font-size:14px}
+.e1{border-top-color:var(--latao)}
+.e2{border-top-color:var(--destaque)}
+.e3{border-top-color:var(--suave);border-style:dashed;border-top-style:solid}
+.selo-etapa{display:inline-block;margin:0;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 10px;border-radius:2px;background:var(--vinho);color:var(--claro)}
+.e1 .selo-etapa{background:var(--latao);color:#2a1a08}
+.linha-tempo{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0;position:relative;text-align:center;font-size:12px;color:var(--latao);letter-spacing:.06em;text-transform:uppercase}
+.linha-tempo::before{content:"";position:absolute;left:0;right:0;top:-6px;height:2px;background:linear-gradient(90deg,var(--latao),var(--destaque),var(--suave))}
+.continuo{border-top-color:var(--vinho)}
+.continuo .duas-col{columns:2;column-gap:28px}
+@media (max-width:860px){.trilha,.linha-tempo{grid-template-columns:1fr}.linha-tempo::before,.linha-tempo{display:none}.continuo .duas-col{columns:1}}
+
+.roadmap-img{display:block;margin:14px 0 8px;box-shadow:0 0 14px rgba(0,0,0,.6);cursor:zoom-in}
+.roadmap-img img{display:block;width:100%;height:auto}
+.lightbox.avulsa .seta{display:none}
