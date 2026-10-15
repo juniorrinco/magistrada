@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAGISTRADA — Simulador da magistratura brasileira</title>
+<meta name="description" content="MAGISTRADA é um jogo para estudar a magistratura brasileira: você preside audiências, lê os autos, inquire testemunhas e decide. 15 casos, simulados, sentenças e uma estação de pesquisa jurídica. Feito por Osmar Rinco Júnior.">
+<meta property="og:title" content="MAGISTRADA — Simulador da magistratura brasileira">
+<meta property="og:description" content="Presida audiências, leia os autos, inquira testemunhas e decida. Um jogo para estudar o caminho da magistratura.">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#">MAGISTRADA</a>
+    <nav>
+      <a href="#sobre">O jogo</a>
+      <a href="#casos">Casos</a>
+      <a href="#gabinete">Gabinete</a>
+      <a href="#estudar">Estudar</a>
+      <a href="#coop">Cooperativo</a>
+      <a href="#porque">Por que existe</a>
+      <a href="#apoie">Apoie</a>
+    </nav>
+  </div>
+</header>
+
+<main class="pagina">
+  <div class="migalhas">Todos os jogos &rsaquo; Simulação &rsaquo; <span>MAGISTRADA</span></div>
+  <h1 class="titulo">MAGISTRADA</h1>
+
+  <section class="vitrine">
+    <div class="midia">
+      <div class="palco" id="palco">
+        <video id="video" controls preload="none"></video>
+        <img id="imagem" alt="" hidden>
+        <button class="seta esq" id="ant" type="button" aria-label="Anterior">&lsaquo;</button>
+        <button class="seta dir" id="prox" type="button" aria-label="Próximo">&rsaquo;</button>
+        <button class="ampliar" id="ampliar" type="button" aria-label="Ampliar" title="Ampliar">⤢</button>
+      </div>
+      <p class="legenda" id="legenda"></p>
+      <div class="tiras" id="tiras" role="tablist"></div>
+    </div>
+
+    <aside class="lateral">
+      <img class="capsula" src="midia/capturas/01_menu.png" alt="Menu principal de MAGISTRADA: a sala de audiências em 3D">
+      <p class="curta">Você é a juíza (ou o juiz) da sala. Lê os autos, ouve as partes, inquire as testemunhas e decide, e cada decisão fica registrada no processo e no seu caminho. É um jogo de estudo para quem quer a magistratura, ou só quer entender melhor como um processo é julgado.</p>
+      <dl class="ficha">
+        <dt>Desenvolvedor</dt><dd>Osmar Rinco Júnior</dd>
+        <dt>Lançamento</dt><dd>A anunciar</dd>
+        <dt>Idioma</dt><dd>Português do Brasil</dd>
+        <dt>Jogadores</dt><dd>1 jogador <span class="selo">Coop planejado</span></dd>
+        <dt>Plataforma</dt><dd>Windows</dd>
+      </dl>
+      <div class="tags">
+        <span>Simulação</span><span>Tribunal</span><span>Investigação</span><span>Rico em história</span><span>Escolhas importam</span><span>Educacional</span><span>Terror psicológico</span><span>Um jogador</span><span>Cooperativo (planejado)</span>
+      </div>
+    </aside>
+  </section>
+
+  <section class="compra" id="compra">
+    <div>
+      <h2>Acompanhe MAGISTRADA</h2>
+      <p>Em desenvolvimento. Data de lançamento e preço ainda não anunciados.</p>
+      <p class="contagem" id="contagem" hidden></p>
+      <p class="dica" id="dica" hidden>Adicionado! Para ser avisado das novidades e atualizações, <a href="#apoie">deixe seu e-mail</a>.</p>
+    </div>
+    <div class="acoes">
+      <button type="button" class="botao-ouro" id="lista" aria-pressed="false">Adicionar à lista de desejos</button>
+      <a class="botao-contorno" href="#apoie">Falar com o desenvolvedor</a>
+    </div>
+  </section>
+
+  <div class="duas">
+    <div class="coluna-principal">
+
+      <section id="sobre" class="bloco">
+        <h2>Sobre este jogo</h2>
+        <p>MAGISTRADA coloca você na bancada. O dia começa na pauta de audiências: você escolhe um processo, abre os autos, confere quem foi arrolado para falar e entra na sala. A partir daí, o que acontece depende do que você pergunta, do que lê e do que decide.</p>
+        <p>Os casos têm autos com folhas numeradas, provas que as partes apresentam durante a audiência, depoimentos anteriores que podem não bater com o que é dito agora e lacunas que ninguém preencheu. O jogo não preenche essas lacunas por você: o que não está nos autos continua não estando, e você precisa decidir assim mesmo, como numa audiência de verdade.</p>
+        <p>Toda decisão vai para os autos com o martelo. No fim, o resultado mostra o que você decidiu, o porquê de cada escolha ser adequada ou não, os temas jurídicos que valeria rever e um mapa com o caminho que você percorreu.</p>
+        <p>Por trás da sala existe um ambiente de estudo completo: simulado, prova oral, sentença escrita, caderno de erros e uma estação de pesquisa com legislação e jurisprudência. A ideia é que jogar e estudar aconteçam no mesmo lugar.</p>
+      </section>
+
+      <section class="bloco">
+        <h2>Como corre uma audiência</h2>
+        <ol class="passos">
+          <li><b>A pauta.</b> Você vê os processos do dia, escolhe um e abre a capa dos autos. Se uma audiência ficou pela metade, o jogo oferece retomar de onde parou.</li>
+          <li><b>Os autos.</b> Autos digitais com as peças folha por folha, linha do tempo e o rol de pessoas a ouvir: quem arrolou quem, qual a relação com o caso e o que já disse antes.</li>
+          <li><b>A sala.</b> A audiência acontece numa sala 3D com juíza, escrevente, promotoria, defesa, partes e testemunhas. A câmera acompanha quem está falando.</li>
+          <li><b>As provas.</b> Documentos e fotografias são apresentados em audiência, e você os examina na hora. Os efeitos são só os que o caso prevê.</li>
+          <li><b>A inquirição.</b> Você escolhe as perguntas da lista ou escreve a sua. A testemunha responde apenas o que sabe. Se a pergunta não tem relação com o que ela viveu, ela pede esclarecimento, e se você repete uma pergunta, ela avisa: &ldquo;como eu já disse&rdquo;.</li>
+          <li><b>A decisão.</b> Cada escolha pesa e tem desdobramento no caso. O relógio da audiência corre durante todo o ato, e o martelo fecha cada decisão.</li>
+          <li><b>O resultado.</b> Registro de encerramento, índice por dimensão (conhecimento, fundamentação, análise de provas, técnica processual), desdobramentos do caso e sugestão de tema para estudar.</li>
+        </ol>
+        <div class="galeria-curta">
+          <img class="abre" data-item="4" src="midia/capturas/03_depoimento.png" alt="Depoimento de testemunha" loading="lazy">
+          <img class="abre" data-item="5" src="midia/capturas/04_autos_e_provas.png" alt="Autos digitais com linha do tempo" loading="lazy">
+        </div>
+        <h4>Três jeitos de jogar</h4>
+        <div class="cartoes">
+          <div class="cartao"><h5>Audiência completa</h5><p>O processo inteiro, de 25 a 50 minutos: instrução, inquirição, provas e decisão final.</p></div>
+          <div class="cartao"><h5>Caso rápido</h5><p>Uma decisão só, em 5 a 10 minutos, como uma audiência de custódia ou um pedido de liminar.</p></div>
+          <div class="cartao"><h5>Modo sentença</h5><p>Você parte dos autos e redige a decisão passo a passo. Abre conforme você sobe de nível.</p></div>
+        </div>
+      </section>
+
+      <section id="casos" class="bloco">
+        <h2>Os 15 casos</h2>
+        <p>São 12 penais e 3 cíveis, 8 audiências completas e 7 casos rápidos. Oito abrem desde o início (nível 1), seis no nível 2 e um, o mais difícil, no nível 3. Três casos rápidos foram inspirados em decisões reais do STF e do STJ, com nomes e detalhes trocados. Os demais são casos fictícios, criados para estudo: pessoas, empresas e fatos são inventados.</p>
+        <div class="casos">
+<article class="caso"><h4>O Ingresso na Casa</h4><p class="sub">Audiência de instrução e julgamento — tráfico de drogas</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: alta</span><span>25 a 40 min</span><span>Nível 1</span></p><p>Lucas, 22 anos, foi preso com 12 porções de cocaína. Depois, policiais entraram em sua casa e apreenderam maconha e uma balança. A defesa diz que a entrada foi ilegal. Conduza a audiência, perceba o que não se encaixa e sentencie.</p><p class="base"><b>Base:</b> CF + CPP + Lei 11.343/06 + jurisprudência STF/STJ</p></article>
+<article class="caso"><h4>A Vitrine</h4><p class="sub">Audiência de instrução e julgamento — lavagem de dinheiro e jogos de azar</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: alta</span><span>30 a 45 min</span><span>Nível 2</span></p><p>Daniela Bezerra, advogada e influenciadora digital, fez publicidade para uma plataforma de jogos que operava sem autorização. Segundo a denúncia, ela também teria devolvido R$ 1,9 milhão ao dono da plataforma, disfarçado de honorários e de empréstimo. Há uma busca no escritório dela em discussão, uma cautelar descumprida e um filho de seis anos. Conduza a audiência e decida o que é lavagem e o que não é.</p><p class="base"><b>Base:</b> CPP + Lei 9.613/98 + Lei das Contravenções Penais + Lei 14.790/23 + Estatuto da OAB + jurisprudência do STF</p></article>
+<article class="caso"><h4>Carência na Emergência</h4><p class="sub">Tutela de urgência, audiência e sentença — plano de saúde</p><p class="tg"><span>Audiência completa</span><span>Cível</span><span>Magistratura estadual</span><span>Dificuldade: média-alta</span><span>25 a 35 min</span><span>Nível 2</span></p><p>Uma paciente internada com colecistite aguda teve a cirurgia negada pelo plano de saúde, por carência de 180 dias. Decida a liminar em minutos, conduza a instrução e sentencie.</p><p class="base"><b>Base:</b> CPC + CDC + Lei 9.656/98 + jurisprudência STJ</p></article>
+<article class="caso"><h4>Caso Henrique de Santa Aurora</h4><p class="sub">Audiência de justificação criminal — prova nova para revisão criminal</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: alta</span><span>35 a 50 min</span><span>Nível 2</span></p><p>Em 1991, um menino desapareceu em Santa Aurora, e duas pessoas foram condenadas com base em confissões. Décadas depois, surgem gravações dos interrogatórios. Os condenados, que já cumpriram as penas, pedem para produzir a prova que levarão ao Tribunal numa revisão criminal. Conduza a justificação: ouça quem achou as fitas, a perita e um antigo investigador — e respeite o limite do que cabe decidir aqui.</p><p class="base"><b>Base:</b> CF + CPP + CPC (arts. 381 a 383) + Lei 9.455/97 + jurisprudência STJ</p></article>
+<article class="caso"><h4>O Banco de Vidro</h4><p class="sub">Audiência de instrução e julgamento — crimes contra o sistema financeiro e lavagem</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura federal</span><span>Dificuldade: alta</span><span>30 a 45 min</span><span>Nível 2</span></p><p>O Banco Arvoredo quebrou e foi liquidado pelo Banco Central. Segundo a denúncia, o controlador, Vítor Valcaro, teria mandado liberar R$ 212 milhões a três empresas sem lastro, escondido o parecer de risco e lavado parte do dinheiro numa fazenda. Um ex-diretor colabora com a acusação. Conduza a instrução, separe o que está provado do que foi apenas dito e decida.</p><p class="base"><b>Base:</b> CF + CPP + Lei 7.492/86 + Lei 9.613/98 + Lei 12.850/13 + jurisprudência do STF</p></article>
+<article class="caso"><h4>Operação Terra Legal</h4><p class="sub">Audiência de instrução e julgamento — venda de decisão judicial em disputa de terras</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: alta</span><span>35 a 50 min</span><span>Nível 2</span></p><p>Segundo a denúncia, um voto que devolveu 38 mil hectares a uma empresa rural teria sido comprado por R$ 600 mil, entregues em envelopes na garagem do Tribunal. O desembargador responde no STJ; a você, juíza de primeiro grau, coube julgar o advogado, o empresário e a assessora. Um ex-motorista colabora. Decida o que é seu, o que é do STJ e o que a palavra do colaborador sustenta.</p><p class="base"><b>Base:</b> CF + CPP + CP + Lei 12.850/13 + LOMAN + jurisprudência do STF e do STJ</p></article>
+<article class="caso"><h4>Serra Azul</h4><p class="sub">Audiência de instrução da primeira fase do júri — rompimento de barragem de rejeitos</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: alta</span><span>35 a 50 min</span><span>Nível 2</span></p><p>A barragem de rejeitos de uma mineradora rompeu em Serra Azul e matou nove pessoas. O ex-diretor de operações é acusado de homicídio com dolo eventual; a empresa, de crime ambiental. Conduza a audiência da primeira fase do júri: decida a competência, a situação da pessoa jurídica, ouça o perito e as testemunhas e diga se o caso vai a julgamento popular.</p><p class="base"><b>Base:</b> CF + CPP + CP + Lei 9.605/98 + Lei 6.938/81 + Lei 12.334/2010 + jurisprudência STF/STJ</p></article>
+<article class="caso"><h4>O Reconhecimento</h4><p class="sub">Audiência de instrução e julgamento — roubo majorado</p><p class="tg"><span>Audiência completa</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: muito alta</span><span>25 a 35 min</span><span>Nível 3</span></p><p>Uma entregadora foi assaltada por dois homens de moto. Dias depois, reconheceu Wesley por uma única foto mostrada na delegacia. Com ele, a polícia apreendeu uma “pistola”. Ela tem certeza. Os autos, talvez não.</p><p class="base"><b>Base:</b> CPP (art. 226) + CP (art. 157) + STJ (HC 598.886) + Res. CNJ 484/2022</p></article>
+<article class="caso"><h4>A Receita e a Evidência</h4><p class="sub">Caso rápido — medicamento não incorporado ao SUS</p><p class="tg"><span>Caso rápido</span><span>Cível</span><span>Magistratura estadual</span><span>Dificuldade: alta</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Dona Iracema, costureira, pede liminar para que Estado e Município forneçam um remédio de R$ 9.800,00 por mês, registrado na Anvisa mas fora das listas do SUS. Ela tem a receita do reumatologista. O Estado quer mandar o processo para a Justiça Federal.</p><p class="real">Inspirado em caso real: STF, RE 566.471 (Tema 6) e RE 1.366.243 (Tema 1234). Nomes e detalhes são fictícios.</p><p class="base"><b>Base:</b> CF (art. 196) + Lei 8.080/90 + STF, RE 566.471 (Tema 6), RE 1.366.243 (Tema 1234) e Súmula Vinculante 61</p></article>
+<article class="caso"><h4>Atitude Suspeita</h4><p class="sub">Caso rápido — busca pessoal e prova ilícita</p><p class="tg"><span>Caso rápido</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: média</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Caíque, 22 anos, entregador, foi parado de moto à noite porque estaria em “atitude suspeita”. Na mochila, os policiais acharam maconha, cocaína e uma balança. O MP pede a condenação por tráfico; a defesa diz que a revista foi ilegal.</p><p class="real">Inspirado em caso real: STJ, RHC 158.580/BA. Nomes e detalhes são fictícios.</p><p class="base"><b>Base:</b> CPP (arts. 157 e 244) + STJ, RHC 158.580/BA (6ª Turma, 2022)</p></article>
+<article class="caso"><h4>Enquanto Houver Risco</h4><p class="sub">Caso rápido — medidas protetivas de urgência</p><p class="tg"><span>Caso rápido</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: média</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Rosângela pede proteção contra o ex-namorado, guarda municipal, que a ameaça com a arma funcional. Nunca moraram juntos e não há inquérito. O MP sugere ouvi-lo antes. Dias depois, ele é preso por descumprir a ordem — e o delegado arbitra fiança.</p><p class="base"><b>Base:</b> Lei 11.340/06 (com as Leis 14.550/2023 e 14.994/2024) + CPP + Súmulas 536 e 600 do STJ</p></article>
+<article class="caso"><h4>Nome Sujo</h4><p class="sub">Caso rápido — negativação indevida e tutela de urgência</p><p class="tg"><span>Caso rápido</span><span>Cível</span><span>Magistratura estadual</span><span>Dificuldade: média</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Sebastião, pedreiro, descobre o nome negativado por um cartão que jura nunca ter contratado. O banco fala em fraude de terceiro e invoca a Súmula 385 do STJ: ele teria outra anotação. As datas do extrato decidem o caso.</p><p class="base"><b>Base:</b> CDC + CPC + Súmulas 54, 362, 385 e 479 do STJ</p></article>
+<article class="caso"><h4>Quem Fica com as Crianças</h4><p class="sub">Caso rápido — custódia, preventiva e prisão domiciliar</p><p class="tg"><span>Caso rápido</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: média-alta</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Tainara, 26 anos, reincidente, foi presa com 38 porções de cocaína. É mãe de duas crianças pequenas. A defesa não conseguiu falar com ela a sós, e o MP pede a preventiva pela gravidade do tráfico.</p><p class="base"><b>Base:</b> CPP (arts. 310, 312, 313, 315, 318-A) + Res. CNJ 213/2015 + STF, HC 143.641</p></article>
+<article class="caso"><h4>Vinte e Oito Gramas</h4><p class="sub">Caso rápido — custódia e porte de maconha para uso pessoal</p><p class="tg"><span>Caso rápido</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: média</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Ruan, 19 anos, primário, foi preso em flagrante por tráfico com 28 g de maconha numa praça. O delegado afastou a presunção de uso porque o local seria “ponto de venda”. Você decide a custódia — e, depois, o que fazer com o caso no Juizado.</p><p class="real">Inspirado em caso real: STF, RE 635.659 (Tema 506 da repercussão geral). Nomes e detalhes são fictícios.</p><p class="base"><b>Base:</b> Lei 11.343/06 (art. 28) + CPP (art. 310) + STF, RE 635.659 (Tema 506, 2024)</p></article>
+<article class="caso"><h4>Vinte e Quatro Horas</h4><p class="sub">Caso rápido — audiência de custódia</p><p class="tg"><span>Caso rápido</span><span>Penal</span><span>Magistratura estadual</span><span>Dificuldade: média</span><span>5 a 10 min</span><span>Nível 1</span></p><p>Jefferson, 24 anos, primário, foi preso em flagrante após furtar um celular. Ele entra algemado e com hematomas. O MP pede a preventiva. Você tem uma audiência para decidir.</p><p class="base"><b>Base:</b> CPP + Res. CNJ 213/2015 + Súmula Vinculante 11</p></article>
+</div>
+      </section>
+
+      <section id="gabinete" class="bloco">
+        <h2>O computador do gabinete</h2>
+        <p>No gabinete e durante a audiência você pode apertar <b>P</b> e a câmera vai até o monitor da mesa. Consultar custa um minuto do relógio da audiência, então vale pensar antes de abrir.</p>
+        <ul>
+          <li>Nove aplicativos: processos e agenda, autos digitais, Vade Mecum, legislação, jurisprudência e precedentes, diário e publicações, fontes externas, favoritos e histórico, referências salvas.</li>
+          <li>Base local com <b>270 dispositivos</b> de lei e <b>105 entendimentos</b> de tribunais, com a data da última conferência sempre visível na tela. Não é pesquisa em tempo real.</li>
+          <li>Catálogo com <b>34 fontes jurídicas oficiais</b> para ir além do jogo.</li>
+          <li>Sites externos só abrem se você mandar, no navegador do seu sistema, depois de uma janela que mostra o endereço completo. O jogo não guarda login, cookie nem senha.</li>
+        </ul>
+      </section>
+
+      <section id="estudar" class="bloco">
+        <h2>Estudar jogando</h2>
+        <p>Cada caso que você joga aponta para o que revisar, e cada tema que você revisa leva de volta a um treino.</p>
+        <div class="grade2">
+          <div>
+            <h4>Prova objetiva e simulado</h4>
+            <p>49 questões de múltipla escolha de 11 disciplinas (Direitos Humanos, Empresarial, Processo Civil, Processo Penal, Penal, Constitucional, Consumidor e outras). Você marca o grau de certeza, risca alternativas, tem tempo por questão e recebe relatório com o porquê de cada resposta.</p>
+          </div>
+          <div>
+            <h4>Questões avançadas e prova oral</h4>
+            <p>13 questões avançadas e 5 questões orais, para praticar a fala e o raciocínio de quem será arguida em concurso.</p>
+          </div>
+          <div>
+            <h4>Sentença escrita</h4>
+            <p>Você redige a decisão e ela é comparada com um espelho: critérios, itens obrigatórios e penalidades. Depois dá para comparar versões.</p>
+          </div>
+          <div>
+            <h4>Oficina de decisões</h4>
+            <p>Treino guiado (preliminar, prova, fundamentação e minuta, etapa por etapa) e treino livre, com espelho.</p>
+          </div>
+          <div>
+            <h4>Laboratório de autos</h4>
+            <p>Marque trechos do processo, escreva quem pede o quê e qual a questão a decidir. O jogo mostra o que você achou, o que deixou passar e o que marcou sem importância. Depois, monte o mapa do caso.</p>
+          </div>
+          <div>
+            <h4>Caderno de erros e desempenho</h4>
+            <p>As questões erradas voltam em revisão espaçada. O painel de desempenho mostra sua evolução por dimensão.</p>
+          </div>
+        </div>
+        <div class="galeria-curta">
+          <img class="abre" data-item="7" src="midia/capturas/06_mapa_decisoes.png" alt="Mapa de decisões" loading="lazy">
+          <img class="abre" data-item="11" src="midia/capturas/10_simulado.png" alt="Simulado por exame" loading="lazy">
+        </div>
+        <p class="nota">As questões do jogo são autorais e nenhuma é de prova oficial. MAGISTRADA é ferramenta de estudo e entretenimento, não é fonte oficial de Direito e não substitui formação jurídica nem orientação profissional.</p>
+      </section>
+
+      <section class="bloco">
+        <h2>A sala percebe</h2>
+        <p>O tribunal tem regras, e alguém observa quem tenta burlá-las. Se você insiste em manipular a audiência, a quarta parede do jogo começa a ceder. Existe um susto com aparição de rosto, e por isso o jogo não é indicado para todas as idades.</p>
+        <div class="galeria-curta">
+          <img class="abre" data-item="9" src="midia/capturas/08_menu_assombrado.png" alt="Menu assombrado" loading="lazy">
+          <img class="abre" data-item="10" src="midia/capturas/09_susto.png" alt="O susto" loading="lazy">
+        </div>
+      </section>
+
+      <section id="coop" class="bloco">
+        <h2>Cooperativo <span class="selo">Planejado</span></h2>
+        <p>Hoje MAGISTRADA é para um jogador. O modo cooperativo está nos planos para uma atualização futura: presidir e estudar junto com outra pessoa, seja um casal, colegas de curso ou um grupo de estudo.</p>
+        <div class="futuro">
+          <b>Ainda não está definido:</b> data, formato (online ou no mesmo computador) e como cada pessoa participaria do caso. Quando eu souber mais, aviso aqui.
+        </div>
+      </section>
+
+      <section id="ia" class="bloco">
+        <h2>Funciona sem internet</h2>
+        <p>Para entender a pergunta que você digita na inquirição, o jogo pode usar um modelo de linguagem pequeno, que roda dentro do seu computador. Ele só identifica qual das perguntas do caso você quis fazer. Quem responde é sempre o texto escrito para o caso, então a testemunha não inventa fato. O jogo confere a integridade dos arquivos do modelo antes de ligar e conversa só com o próprio computador.</p>
+        <p>Autos, saves e perguntas não saem do seu PC. Sem o modelo, o jogo inteiro funciona com a lista de perguntas.</p>
+      </section>
+
+      <section id="porque" class="dedicatoria">
+        <h2>Por que este jogo existe</h2>
+        <p>Eu fiz este jogo para a Beatriz, minha esposa.</p>
+        <p>O sonho dela é ser juíza. Eu sei como é o estudo para chegar lá: a matéria é enorme, difícil, cansativa, e não tem atalho. Eu não posso estudar no lugar dela, então fiz o que eu sei fazer.</p>
+        <p>Tentei juntar o estudo e o jogo em algo mais leve e descontraído, para que fazer uma pausa e continuar aprendendo fossem a mesma coisa. Se ajudar você, Beatriz, já valeu pra mim.</p>
+        <p>Depois pensei que o jogo também pode ajudar quem está no mesmo caminho, e quem só quer praticar e conhecer um pouco mais das leis. Por isso ele vai ser publicado.</p>
+        <p>Beatriz, essa é a minha forma de te apoiar, meu amor.</p>
+        <p class="assina">Desenvolvedor Osmar Rinco Júnior</p>
+      </section>
+
+      <section id="apoie" class="bloco">
+        <h2>Apoie o projeto e fale comigo</h2>
+        <p>MAGISTRADA é feito por uma pessoa só. Cada pessoa que coloca o jogo na lista de desejos me mostra que vale continuar. Use o botão abaixo, e se quiser dizer alguma coisa, é só escrever.</p>
+        <div class="apoio">
+          <div class="apoio-lista">
+            <button type="button" class="botao-ouro grande" id="lista2" aria-pressed="false">Adicionar à lista de desejos</button>
+            <p class="contagem" id="contagem2" hidden></p>
+            <p class="miudo">A lista de desejos guarda só um código anônimo gerado no seu navegador, sem nome nem e-mail.</p>
+
+            <form id="avisos" class="form mini" novalidate>
+              <h3>Receber avisos</h3>
+              <p class="miudo">Quer saber quando o jogo ganhar uma atualização, um novo caso ou for lançado? Deixe seu e-mail.</p>
+              <label>Seu e-mail
+                <input name="email" type="email" maxlength="120" autocomplete="email" required>
+              </label>
+              <button type="submit" class="botao-ouro" id="avisar">Quero ser avisado</button>
+              <p class="status" id="status-avisos" role="status"></p>
+              <p class="miudo">Uso o e-mail só para avisar de novidades do jogo, sem repassar a ninguém. Para sair da lista a qualquer momento, <a href="#sair" id="abrir-sair">cancele aqui</a>.</p>
+            </form>
+            <form id="sair" class="form mini" novalidate hidden>
+              <h3>Cancelar avisos</h3>
+              <label>E-mail cadastrado
+                <input name="email" type="email" maxlength="120" required>
+              </label>
+              <button type="submit" class="botao-ouro" id="cancelar">Cancelar meus avisos</button>
+              <p class="status" id="status-sair" role="status"></p>
+            </form>
+          </div>
+          <form id="form" class="form" novalidate>
+            <h3>Mande uma mensagem</h3>
+            <label>Assunto
+              <input name="assunto" type="text" maxlength="100" required>
+            </label>
+            <label>Seu nome
+              <input name="nome" type="text" maxlength="80" autocomplete="name" required>
+            </label>
+            <label>Seu e-mail <span class="miudo">(só para eu poder responder)</span>
+              <input name="email" type="email" maxlength="120" autocomplete="email" required>
+            </label>
+            <label>Mensagem
+              <textarea name="mensagem" rows="5" maxlength="2000" required></textarea>
+            </label>
+            <input class="isca" name="site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit" class="botao-ouro" id="enviar">Enviar mensagem</button>
+            <p class="status" id="status" role="status"></p>
+            <p class="miudo">Uso seu nome e e-mail apenas para responder esta mensagem.</p>
+          </form>
+        </div>
+      </section>
+
+      <section id="requisitos" class="bloco">
+        <h2>Requisitos do sistema</h2>
+        <div class="req">
+          <div>
+            <h4>Mínimos</h4>
+            <p class="pendente">A confirmar. Ainda não foram medidos em máquina modesta.</p>
+          </div>
+          <div>
+            <h4>Recomendados</h4>
+            <ul class="semmarca">
+              <li><b>SO:</b> Windows</li>
+              <li><b>Processador:</b> Ryzen 5 5600X (máquina de teste)</li>
+              <li><b>Placa de vídeo:</b> RTX 3060 12 GB (máquina de teste)</li>
+              <li><b>Armazenamento:</b> cerca de 3,6 GB</li>
+              <li><b>Memória para o modelo local:</b> 11.000 MB de RAM. Abaixo disso o jogo roda sem ele.</li>
+              <li><b>Desempenho medido:</b> 130 a 160 quadros por segundo em 1280×720</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="coluna-lateral">
+      <section class="bloco">
+        <h2>Desenvolvedor</h2>
+        <p>Osmar Rinco Júnior</p>
+        <p><a href="#apoie">Enviar mensagem</a></p>
+      </section>
+      <section class="bloco">
+        <h2>Acessibilidade</h2>
+        <ul class="semmarca">
+          <li>Tamanho da interface e dos textos, de pequeno a muito grande</li>
+          <li>Velocidade do texto das falas</li>
+          <li>Volume geral, das falas e da trilha</li>
+          <li>Tela cheia ou janela</li>
+        </ul>
+      </section>
+      <section class="bloco">
+        <h2>Controles</h2>
+        <p>Teclado e mouse. Controle: confirmar com A/✕ e voltar com B/○.</p>
+      </section>
+      <section class="bloco">
+        <h2>Aviso de conteúdo</h2>
+        <p>Temas de crimes, violência doméstica, tortura e morte, tratados em contexto jurídico. Um susto com aparição de rosto. Classificação etária ainda não definida.</p>
+      </section>
+      <section class="bloco">
+        <h2>Divulgação de IA</h2>
+        <p>Modelo de linguagem local (Qwen3.5-2B), usado só para reconhecer qual pergunta foi feita. Nenhum texto gerado aparece na tela, e nada sai do seu computador.</p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<footer class="rodape">
+  <p>© Osmar Rinco Júnior. Página de divulgação de MAGISTRADA, em desenvolvimento e sujeita a alterações. Não é a página da Steam nem tem vínculo com a Valve.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Mídia ampliada">
+  <button class="lb-fechar" id="lbFechar" type="button" aria-label="Fechar">✕</button>
+  <button class="seta lb-esq" id="lbAnt" type="button" aria-label="Anterior">&lsaquo;</button>
+  <div class="lb-corpo" id="lbCorpo"></div>
+  <button class="seta lb-dir" id="lbProx" type="button" aria-label="Próximo">&rsaquo;</button>
+  <p class="lb-legenda" id="lbLegenda"></p>
+</div>
+
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
