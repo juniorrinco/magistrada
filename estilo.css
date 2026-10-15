@@ -197,3 +197,6 @@ button{font:inherit}
 @media (max-width:860px){.titulo img{width:56px;height:56px}}
 .marca img{width:52px;height:52px}
 .titulo{display:block}
+.topo-in{justify-content:center}
+.titulo{margin:4px 0 12px}
+.titulo img{display:block;width:min(100%,520px);height:auto;margin:0 auto 0 -6px}
