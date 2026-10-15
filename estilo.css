@@ -194,4 +194,4 @@ button{font:inherit}
 .marca img{display:block}
 .titulo{display:flex;align-items:center;gap:16px}
 .titulo img{flex:0 0 auto}
-@media (max-width:860px){.titulo img{width:42px;height:42px}}
+@media (max-width:860px){.titulo img{width:56px;height:56px}}
