@@ -4,7 +4,7 @@ const CFG = Object.assign({ endpoint: "", mostrarContagem: false }, window.MAGIS
 const API = CFG.endpoint || "/api";
 const CAP = "midia/capturas/";
 const itens = [
-  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "capa_trailer.png", leg: "Trailer" },
+  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "capa_logo.png", leg: "Trailer" },
   { tipo: "img", src: CAP + "01_menu.png", leg: "A sala de audiências espera por você." },
   { tipo: "img", src: CAP + "02_sala_audiencia.png", leg: "Presida a audiência: partes, testemunhas, promotoria e defesa." },
   { tipo: "img", src: CAP + "03_depoimento.png", leg: "Inquira com as suas palavras — a testemunha responde só o que sabe." },
