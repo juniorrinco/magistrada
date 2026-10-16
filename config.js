@@ -7,5 +7,5 @@ window.MAGISTRADA_CONFIG = {
   mostrarContagem: false,
   // Contagem na hospedagem estática (GitHub Pages): o código da sua conta no GoatCounter (ex.: "magistrada" para
   // magistrada.goatcounter.com). Vazio = desligado. Veja LEIA-ME_PUBLICAR.md.
-  goatcounter: "",
+  goatcounter: "insanittos",
 };
