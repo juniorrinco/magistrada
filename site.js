@@ -4,8 +4,7 @@ const CFG = Object.assign({ endpoint: "", mostrarContagem: false }, window.MAGIS
 const API = CFG.endpoint || "/api";
 const CAP = "midia/capturas/";
 const itens = [
-  { tipo: "video", src: "midia/video/apresentacao.mp4", capa: CAP + "02_sala_audiencia.png", leg: "Vídeo de apresentação (40 s, com som)" },
-  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "08_menu_assombrado.png", leg: "Trailer (40 s, com trilha) — contém um susto com aparição de rosto" },
+  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "11_xandao_vermelho.png", leg: "Trailer" },
   { tipo: "img", src: CAP + "01_menu.png", leg: "A sala de audiências espera por você." },
   { tipo: "img", src: CAP + "02_sala_audiencia.png", leg: "Presida a audiência: partes, testemunhas, promotoria e defesa." },
   { tipo: "img", src: CAP + "03_depoimento.png", leg: "Inquira com as suas palavras — a testemunha responde só o que sabe." },
@@ -13,9 +12,8 @@ const itens = [
   { tipo: "img", src: CAP + "05_pergunta_livre.png", leg: "Escreva a pergunta; a IA local reconhece qual é." },
   { tipo: "img", src: CAP + "06_mapa_decisoes.png", leg: "O mapa do caminho que você traçou." },
   { tipo: "img", src: CAP + "07_sentenca_ou_resultado.png", leg: "Cada decisão, com o porquê." },
-  { tipo: "img", src: CAP + "08_menu_assombrado.png", leg: "Alguém observa quem tenta burlar o processo." },
-  { tipo: "img", src: CAP + "09_susto.png", leg: "A quarta parede não é tão firme quanto parece." },
   { tipo: "img", src: CAP + "10_simulado.png", leg: "Estude jogando: simulado por exame." },
+  { tipo: "img", src: CAP + "11_xandao_vermelho.png", leg: "Alguém observa." },
 ];
 
 const $ = (id) => document.getElementById(id);
@@ -46,7 +44,7 @@ function ir(i) {
     video.hidden = true; video.removeAttribute("src"); video.load();
     imagem.src = it.src; imagem.alt = it.leg; imagem.hidden = false;
   }
-  legenda.textContent = it.leg;
+  legenda.textContent = ""; // sem legenda sob a mídia (pedido do autor)
   [...tiras.children].forEach((t, k) => {
     t.setAttribute("aria-selected", k === atual);
     if (k === atual) t.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });

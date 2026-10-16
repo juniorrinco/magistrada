@@ -210,3 +210,6 @@ button{font:inherit}
 .contador-card[hidden]{display:none}
 .contador-num{font-family:"Cormorant Garamond",Georgia,serif;font-size:2.2rem;font-weight:700;line-height:1;color:var(--latao)}
 .contador-rot{font-size:.9rem;opacity:.9}
+
+/* sem legendas sob a mídia e no visualizador */
+.legenda,.lb-legenda{display:none}
