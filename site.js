@@ -151,8 +151,10 @@ async function contagem() {
 }
 
 // ---- Contagem da lista de desejos em hospedagem estática (GitHub Pages) ----
-// Com goatcounter preenchido em config.js, cada navegador conta UMA vez quando adiciona o jogo à lista (evento
-// "lista-de-desejos") e uma vez quando remove ("lista-de-desejos-removida"). Sem cookies; o painel fica no GoatCounter.
+// Com goatcounter preenchido em config.js, a contagem acompanha o ESTADO de cada navegador: adicionar soma 1 (evento
+// "lista-de-desejos") só se este navegador ainda não está contado; remover soma 1 em "lista-de-desejos-removida" só se
+// está. Adicionar, remover e adicionar de novo dá 1 (antes dava 0: "conta uma vez só" travava a segunda adição).
+// Sem cookies; o estado fica no próprio navegador ("magistrada-gc-dentro") e o painel, no GoatCounter.
 let gcPronto = null;
 function goat() {
   if (!CFG.goatcounter) return Promise.resolve(null);
@@ -166,13 +168,18 @@ function goat() {
   });
   return gcPronto;
 }
+function contadoAgora() {
+  const d = ler("magistrada-gc-dentro");
+  if (d === "1" || d === "0") return d === "1";
+  // navegadores da regra antiga: contado se já somou a adição e ainda não somou a remoção
+  return ler("magistrada-gc-add") === "1" && ler("magistrada-gc-rem") !== "1";
+}
 async function contarNoGoatCounter(adicionou) {
-  const chave = adicionou ? "magistrada-gc-add" : "magistrada-gc-rem";
-  if (ler(chave) === "1") return; // o mesmo navegador conta uma vez só
+  if (contadoAgora() === adicionou) { guardar("magistrada-gc-dentro", adicionou ? "1" : "0"); return; } // já está assim
   const gc = await goat();
   if (!gc || !gc.count) return;
   gc.count({ path: adicionou ? "lista-de-desejos" : "lista-de-desejos-removida", title: adicionou ? "Adicionou à lista de desejos" : "Removeu da lista de desejos", event: true });
-  guardar(chave, "1");
+  guardar("magistrada-gc-dentro", adicionou ? "1" : "0");
 }
 goat();
 
@@ -214,10 +221,12 @@ botoes.forEach((b) => b.addEventListener("click", async () => {
   guardar("magistrada-desejo", marcado ? "1" : "0");
   pintar();
   $("dica").hidden = !marcado;
-  contarNoGoatCounter(marcado).then(() => setTimeout(atualizarContagem, 4000));
+  contarNoGoatCounter(marcado).then(() => { setTimeout(atualizarContagem, 4000); setTimeout(atualizarContagem, 15000); });
   try { await enviar({ acao: "desejo", id: idAnonimo, ativo: marcado }); atualizarContagem(); } catch (e) {}
 }));
 pintar();
+// o botão diz "na sua lista" mas o contador não conta este navegador (ou o contrário): acerta ao abrir a página
+if (CFG.goatcounter && marcado !== contadoAgora()) contarNoGoatCounter(marcado).then(() => setTimeout(atualizarContagem, 4000));
 atualizarContagem();
 
 // ---- Formulário de contato ----
