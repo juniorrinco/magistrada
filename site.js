@@ -131,12 +131,17 @@ async function enviar(dados) {
   return j;
 }
 async function contagem() {
+  const n = await contagemBruta();
+  ultimoBruto = n;
+  return CFG.goatcounter ? comAjuste(n) : n;
+}
+async function contagemBruta() {
   // GitHub Pages: a contagem vem do contador público do GoatCounter (adicionaram − removeram). Precisa da opção
   // "Allow adding visitor counts on your website" ligada nas configurações do GoatCounter.
   if (CFG.goatcounter) {
     const base = "https://" + CFG.goatcounter + ".goatcounter.com/counter/";
     const ler = async (caminho) => {
-      const r = await fetch(base + encodeURIComponent(caminho) + ".json");
+      const r = await fetch(base + encodeURIComponent(caminho) + ".json", { cache: "no-store" });
       if (r.status === 404) return 0; // ainda ninguém
       if (!r.ok) throw new Error("contador");
       const j = await r.json();
@@ -178,8 +183,23 @@ async function contarNoGoatCounter(adicionou) {
   if (contadoAgora() === adicionou) { guardar("magistrada-gc-dentro", adicionou ? "1" : "0"); return; } // já está assim
   const gc = await goat();
   if (!gc || !gc.count) return;
+  const base = ultimoBruto != null ? ultimoBruto : await contagemBruta().catch(() => null);
   gc.count({ path: adicionou ? "lista-de-desejos" : "lista-de-desejos-removida", title: adicionou ? "Adicionou à lista de desejos" : "Removeu da lista de desejos", event: true });
   guardar("magistrada-gc-dentro", adicionou ? "1" : "0");
+  // o contador público do GoatCounter vem de um cache (visto com mais de 20 min de idade): até ele mudar, quem clicou vê
+  // o próprio clique somado ao número que estava na tela
+  if (base != null) {
+    let aj = null; try { aj = JSON.parse(ler("magistrada-gc-ajuste") || "null"); } catch (e) {}
+    const d = (aj && aj.base === base ? aj.d : 0) + (adicionou ? 1 : -1);
+    guardar("magistrada-gc-ajuste", JSON.stringify({ base, d, t: Date.now() }));
+  }
+}
+let ultimoBruto = null;
+function comAjuste(n) {
+  let aj = null; try { aj = JSON.parse(ler("magistrada-gc-ajuste") || "null"); } catch (e) {}
+  if (!aj) return n;
+  if (aj.base !== n || Date.now() - aj.t > 40 * 60 * 1000 || !aj.d) { try { localStorage.removeItem("magistrada-gc-ajuste"); } catch (e) {} return n; }
+  return Math.max(0, n + aj.d);
 }
 goat();
 
