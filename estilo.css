@@ -203,5 +203,4 @@ button{font:inherit}
 
 /* formulário do Google embutido (avisos de lançamento e opinião) */
 .formulario-google { display: flex; flex-direction: column; }
-.google-form { width: 100%; min-height: 820px; border: 0; border-radius: 10px; background: #fff; margin: 8px 0; }
-@media (max-width: 700px) { .google-form { min-height: 1000px; } }
+.formulario-google .botao-ouro { align-self: flex-start; margin: 10px 0 6px; text-decoration: none; display: inline-block; }

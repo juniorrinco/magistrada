@@ -133,6 +133,20 @@ async function enviar(dados) {
   return j;
 }
 async function contagem() {
+  // GitHub Pages: a contagem vem do contador público do GoatCounter (adicionaram − removeram). Precisa da opção
+  // "Allow adding visitor counts on your website" ligada nas configurações do GoatCounter.
+  if (CFG.goatcounter) {
+    const base = "https://" + CFG.goatcounter + ".goatcounter.com/counter/";
+    const ler = async (caminho) => {
+      const r = await fetch(base + encodeURIComponent(caminho) + ".json");
+      if (r.status === 404) return 0; // ainda ninguém
+      if (!r.ok) throw new Error("contador");
+      const j = await r.json();
+      return parseInt(String(j.count || "0").replace(/\D/g, ""), 10) || 0;
+    };
+    const [add, rem] = await Promise.all([ler("lista-de-desejos"), ler("lista-de-desejos-removida")]);
+    return Math.max(0, add - rem);
+  }
   const r = await fetch(API + "?acao=contagem");
   const j = await r.json();
   return j.desejos;
@@ -188,6 +202,7 @@ async function atualizarContagem() {
   if (!CFG.mostrarContagem) return;
   try {
     const n = await contagem();
+    if (!n) return; // zero: não mostra nada
     const txt = n === 1 ? "1 pessoa já colocou MAGISTRADA na lista de desejos." : n + " pessoas já colocaram MAGISTRADA na lista de desejos.";
     rotulos.forEach((p) => { p.textContent = txt; p.hidden = false; });
   } catch (e) {}
@@ -197,7 +212,7 @@ botoes.forEach((b) => b.addEventListener("click", async () => {
   guardar("magistrada-desejo", marcado ? "1" : "0");
   pintar();
   $("dica").hidden = !marcado;
-  contarNoGoatCounter(marcado);
+  contarNoGoatCounter(marcado).then(() => setTimeout(atualizarContagem, 4000));
   try { await enviar({ acao: "desejo", id: idAnonimo, ativo: marcado }); atualizarContagem(); } catch (e) {}
 }));
 pintar();

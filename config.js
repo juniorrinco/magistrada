@@ -4,7 +4,7 @@ window.MAGISTRADA_CONFIG = {
   // Para hospedagem estática, cole aqui o endereço do Google Apps Script (termina em /exec).
   endpoint: "",
   // Mostrar aos visitantes quantas pessoas já colocaram o jogo na lista de desejos.
-  mostrarContagem: false,
+  mostrarContagem: true,
   // Contagem na hospedagem estática (GitHub Pages): o código da sua conta no GoatCounter (ex.: "magistrada" para
   // magistrada.goatcounter.com). Vazio = desligado. Veja LEIA-ME_PUBLICAR.md.
   goatcounter: "insanittos",
