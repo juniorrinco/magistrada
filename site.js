@@ -4,7 +4,7 @@ const CFG = Object.assign({ endpoint: "", mostrarContagem: false }, window.MAGIS
 const API = CFG.endpoint || "/api";
 const CAP = "midia/capturas/";
 const itens = [
-  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "11_xandao_vermelho.png", leg: "Trailer" },
+  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "capa_trailer.png", leg: "Trailer" },
   { tipo: "img", src: CAP + "01_menu.png", leg: "A sala de audiências espera por você." },
   { tipo: "img", src: CAP + "02_sala_audiencia.png", leg: "Presida a audiência: partes, testemunhas, promotoria e defesa." },
   { tipo: "img", src: CAP + "03_depoimento.png", leg: "Inquira com as suas palavras — a testemunha responde só o que sabe." },
@@ -186,7 +186,7 @@ async function contarNoGoatCounter(adicionou) {
   const base = ultimoBruto != null ? ultimoBruto : await contagemBruta().catch(() => null);
   gc.count({ path: adicionou ? "lista-de-desejos" : "lista-de-desejos-removida", title: adicionou ? "Adicionou à lista de desejos" : "Removeu da lista de desejos", event: true });
   guardar("magistrada-gc-dentro", adicionou ? "1" : "0");
-  // o contador público do GoatCounter vem de um cache (visto com mais de 20 min de idade): até ele mudar, quem clicou vê
+  // o contador público do GoatCounter vem de um cache de até 4 horas (documentação do GoatCounter): até ele mudar, quem clicou vê
   // o próprio clique somado ao número que estava na tela
   if (base != null) {
     let aj = null; try { aj = JSON.parse(ler("magistrada-gc-ajuste") || "null"); } catch (e) {}
@@ -198,7 +198,7 @@ let ultimoBruto = null;
 function comAjuste(n) {
   let aj = null; try { aj = JSON.parse(ler("magistrada-gc-ajuste") || "null"); } catch (e) {}
   if (!aj) return n;
-  if (aj.base !== n || Date.now() - aj.t > 40 * 60 * 1000 || !aj.d) { try { localStorage.removeItem("magistrada-gc-ajuste"); } catch (e) {} return n; }
+  if (aj.base !== n || Date.now() - aj.t > 5 * 60 * 60 * 1000 || !aj.d) { try { localStorage.removeItem("magistrada-gc-ajuste"); } catch (e) {} return n; }
   return Math.max(0, n + aj.d);
 }
 goat();
