@@ -4,8 +4,8 @@ const CFG = Object.assign({ endpoint: "", mostrarContagem: false }, window.MAGIS
 const API = CFG.endpoint || "/api";
 const CAP = "midia/capturas/";
 const itens = [
-  { tipo: "video", src: "midia/video/apresentacao.mp4", capa: CAP + "02_sala_audiencia.png", leg: "Vídeo de apresentação (40 s)" },
-  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "08_menu_assombrado.png", leg: "Trailer (59 s) — contém um susto com aparição de rosto" },
+  { tipo: "video", src: "midia/video/apresentacao.mp4", capa: CAP + "02_sala_audiencia.png", leg: "Vídeo de apresentação (40 s, com som)" },
+  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "08_menu_assombrado.png", leg: "Trailer (57 s, com som) — contém um susto com aparição de rosto" },
   { tipo: "img", src: CAP + "01_menu.png", leg: "A sala de audiências espera por você." },
   { tipo: "img", src: CAP + "02_sala_audiencia.png", leg: "Presida a audiência: partes, testemunhas, promotoria e defesa." },
   { tipo: "img", src: CAP + "03_depoimento.png", leg: "Inquira com as suas palavras — a testemunha responde só o que sabe." },
@@ -138,6 +138,32 @@ async function contagem() {
   return j.desejos;
 }
 
+// ---- Contagem da lista de desejos em hospedagem estática (GitHub Pages) ----
+// Com goatcounter preenchido em config.js, cada navegador conta UMA vez quando adiciona o jogo à lista (evento
+// "lista-de-desejos") e uma vez quando remove ("lista-de-desejos-removida"). Sem cookies; o painel fica no GoatCounter.
+let gcPronto = null;
+function goat() {
+  if (!CFG.goatcounter) return Promise.resolve(null);
+  if (!gcPronto) gcPronto = new Promise((ok) => {
+    const s = document.createElement("script");
+    s.async = true; s.src = "https://gc.zgo.at/count.js";
+    s.dataset.goatcounter = "https://" + CFG.goatcounter + ".goatcounter.com/count";
+    s.dataset.goatcounterSettings = '{"no_onload": false}';
+    s.onload = () => ok(window.goatcounter || null); s.onerror = () => ok(null);
+    document.head.appendChild(s);
+  });
+  return gcPronto;
+}
+async function contarNoGoatCounter(adicionou) {
+  const chave = adicionou ? "magistrada-gc-add" : "magistrada-gc-rem";
+  if (ler(chave) === "1") return; // o mesmo navegador conta uma vez só
+  const gc = await goat();
+  if (!gc || !gc.count) return;
+  gc.count({ path: adicionou ? "lista-de-desejos" : "lista-de-desejos-removida", title: adicionou ? "Adicionou à lista de desejos" : "Removeu da lista de desejos", event: true });
+  guardar(chave, "1");
+}
+goat();
+
 // ---- Lista de desejos ----
 function guardar(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 function ler(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -171,6 +197,7 @@ botoes.forEach((b) => b.addEventListener("click", async () => {
   guardar("magistrada-desejo", marcado ? "1" : "0");
   pintar();
   $("dica").hidden = !marcado;
+  contarNoGoatCounter(marcado);
   try { await enviar({ acao: "desejo", id: idAnonimo, ativo: marcado }); atualizarContagem(); } catch (e) {}
 }));
 pintar();
@@ -178,6 +205,7 @@ atualizarContagem();
 
 // ---- Formulário de contato ----
 const form = $("form"), status = $("status");
+if (form) {
 let ultimoEnvio = +ler("magistrada-ultimo-envio") || 0;
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -222,9 +250,12 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+}
+
 // ---- Avisos de atualização (e-mail) ----
 function ligarForm(idForm, idStatus, idBotao, montar, aviso, okMsg) {
   const fm = $(idForm), st = $(idStatus);
+  if (!fm) return; // o site publicado usa o formulário do Google no lugar deste
   fm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = (new FormData(fm).get("email") || "").trim();
@@ -247,7 +278,7 @@ ligarForm("avisos", "status-avisos", "avisar", (email) => ({ acao: "inscrever", 
   "Pronto! Você vai receber um aviso quando houver novidades.");
 ligarForm("sair", "status-sair", "cancelar", (email) => ({ acao: "descadastrar", email }), false,
   "Pronto. Você não receberá mais avisos.");
-$("abrir-sair").addEventListener("click", (e) => { e.preventDefault(); $("sair").hidden = false; $("sair").querySelector("input").focus(); });
+if ($("abrir-sair")) $("abrir-sair").addEventListener("click", (e) => { e.preventDefault(); $("sair").hidden = false; $("sair").querySelector("input").focus(); });
 if (marcado) $("dica").hidden = false;
 
 ir(0);

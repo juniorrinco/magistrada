@@ -5,4 +5,7 @@ window.MAGISTRADA_CONFIG = {
   endpoint: "",
   // Mostrar aos visitantes quantas pessoas já colocaram o jogo na lista de desejos.
   mostrarContagem: false,
+  // Contagem na hospedagem estática (GitHub Pages): o código da sua conta no GoatCounter (ex.: "magistrada" para
+  // magistrada.goatcounter.com). Vazio = desligado. Veja LEIA-ME_PUBLICAR.md.
+  goatcounter: "",
 };

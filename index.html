@@ -231,44 +231,13 @@
             <p class="contagem" id="contagem2" hidden></p>
             <p class="miudo">A lista de desejos guarda só um código anônimo gerado no seu navegador, sem nome nem e-mail.</p>
 
-            <form id="avisos" class="form mini" novalidate>
-              <h3>Receber avisos</h3>
-              <p class="miudo">Quer saber quando o jogo ganhar uma atualização, um novo caso ou for lançado? Deixe seu e-mail.</p>
-              <label>Seu e-mail
-                <input name="email" type="email" maxlength="120" autocomplete="email" required>
-              </label>
-              <button type="submit" class="botao-ouro" id="avisar">Quero ser avisado</button>
-              <p class="status" id="status-avisos" role="status"></p>
-              <p class="miudo">Uso o e-mail só para avisar de novidades do jogo, sem repassar a ninguém. Para sair da lista a qualquer momento, <a href="#sair" id="abrir-sair">cancele aqui</a>.</p>
-            </form>
-            <form id="sair" class="form mini" novalidate hidden>
-              <h3>Cancelar avisos</h3>
-              <label>E-mail cadastrado
-                <input name="email" type="email" maxlength="120" required>
-              </label>
-              <button type="submit" class="botao-ouro" id="cancelar">Cancelar meus avisos</button>
-              <p class="status" id="status-sair" role="status"></p>
-            </form>
           </div>
-          <form id="form" class="form" novalidate>
-            <h3>Mande uma mensagem</h3>
-            <label>Assunto
-              <input name="assunto" type="text" maxlength="100" required>
-            </label>
-            <label>Seu nome
-              <input name="nome" type="text" maxlength="80" autocomplete="name" required>
-            </label>
-            <label>Seu e-mail <span class="miudo">(só para eu poder responder)</span>
-              <input name="email" type="email" maxlength="120" autocomplete="email" required>
-            </label>
-            <label>Mensagem
-              <textarea name="mensagem" rows="5" maxlength="2000" required></textarea>
-            </label>
-            <input class="isca" name="site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <button type="submit" class="botao-ouro" id="enviar">Enviar mensagem</button>
-            <p class="status" id="status" role="status"></p>
-            <p class="miudo">Uso seu nome e e-mail apenas para responder esta mensagem.</p>
-          </form>
+          <div class="form formulario-google">
+            <h3>Receba novidades e mande sua opinião</h3>
+            <p class="miudo">Deixe seu e-mail para saber do lançamento, conte como conheceu o projeto e mande comentários e sugestões. O formulário é do Google.</p>
+            <iframe class="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLSdhUcJDMrDxJW2SJ0pA0rIE1T6RIKOQKrIw4KPpwMP6-yie-w/viewform?embedded=true" title="Formulário: interesse e feedback do jogo MAGISTRADA" loading="lazy">Carregando…</iframe>
+            <p class="miudo"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdhUcJDMrDxJW2SJ0pA0rIE1T6RIKOQKrIw4KPpwMP6-yie-w/viewform" target="_blank" rel="noopener">Abrir o formulário em outra aba</a>. Uso seu e-mail só para avisar de novidades do jogo, sem repassar a ninguém; para sair da lista, é só pedir respondendo qualquer aviso.</p>
+          </div>
         </div>
       </section>
 
