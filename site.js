@@ -5,7 +5,7 @@ const API = CFG.endpoint || "/api";
 const CAP = "midia/capturas/";
 const itens = [
   { tipo: "video", src: "midia/video/apresentacao.mp4", capa: CAP + "02_sala_audiencia.png", leg: "Vídeo de apresentação (40 s, com som)" },
-  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "08_menu_assombrado.png", leg: "Trailer (57 s, com som) — contém um susto com aparição de rosto" },
+  { tipo: "video", src: "midia/video/trailer_steam.mp4", capa: CAP + "08_menu_assombrado.png", leg: "Trailer (40 s, com trilha) — contém um susto com aparição de rosto" },
   { tipo: "img", src: CAP + "01_menu.png", leg: "A sala de audiências espera por você." },
   { tipo: "img", src: CAP + "02_sala_audiencia.png", leg: "Presida a audiência: partes, testemunhas, promotoria e defesa." },
   { tipo: "img", src: CAP + "03_depoimento.png", leg: "Inquira com as suas palavras — a testemunha responde só o que sabe." },
