@@ -190,7 +190,7 @@ if (!idAnonimo) {
 }
 let marcado = ler("magistrada-desejo") === "1";
 const botoes = [$("lista"), $("lista2")];
-const rotulos = [$("contagem"), $("contagem2")];
+const cards = [["contador", "contador-num", "contador-rot"], ["contador2", "contador-num2", "contador-rot2"]];
 
 function pintar() {
   botoes.forEach((b) => {
@@ -202,9 +202,13 @@ async function atualizarContagem() {
   if (!CFG.mostrarContagem) return;
   try {
     const n = await contagem();
-    if (!n) return; // zero: não mostra nada
-    const txt = n === 1 ? "1 pessoa já colocou MAGISTRADA na lista de desejos." : n + " pessoas já colocaram MAGISTRADA na lista de desejos.";
-    rotulos.forEach((p) => { p.textContent = txt; p.hidden = false; });
+    // card com o número de pessoas na lista de desejos (aparece assim que o contador responde, inclusive com 0)
+    cards.forEach(([c, num, rot]) => {
+      if (!$(c)) return;
+      $(num).textContent = n.toLocaleString("pt-BR");
+      $(rot).textContent = n === 1 ? "pessoa colocou MAGISTRADA na lista de desejos" : "pessoas colocaram MAGISTRADA na lista de desejos";
+      $(c).hidden = false;
+    });
   } catch (e) {}
 }
 botoes.forEach((b) => b.addEventListener("click", async () => {

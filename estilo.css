@@ -204,3 +204,9 @@ button{font:inherit}
 /* formulário do Google embutido (avisos de lançamento e opinião) */
 .formulario-google { display: flex; flex-direction: column; }
 .formulario-google .botao-ouro { align-self: flex-start; margin: 10px 0 6px; text-decoration: none; display: inline-block; }
+
+/* card do contador da lista de desejos */
+.contador-card{display:inline-flex;align-items:baseline;gap:10px;margin:12px 0 4px;padding:10px 16px;border:1px solid rgba(201,167,91,.45);border-radius:10px;background:rgba(201,167,91,.08)}
+.contador-card[hidden]{display:none}
+.contador-num{font-family:"Cormorant Garamond",Georgia,serif;font-size:2.2rem;font-weight:700;line-height:1;color:var(--latao)}
+.contador-rot{font-size:.9rem;opacity:.9}
